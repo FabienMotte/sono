@@ -200,35 +200,7 @@ function Sono() {
         isTouchLocked = false;
         group.sounds.forEach((sound) => (sound.isTouchLocked = false));
     });
-
-    /*
-     * Page visibility events
-     */
-
-    (function() {
-        const pageHiddenPaused = [];
-
-        // pause currently playing sounds and store refs
-        function onHidden() {
-            group.sounds.forEach(function(sound) {
-                if (sound.playing) {
-                    sound.pause();
-                    pageHiddenPaused.push(sound);
-                }
-            });
-        }
-
-        // play sounds that got paused when page was hidden
-        function onShown() {
-            while (pageHiddenPaused.length) {
-                pageHiddenPaused.pop()
-                    .play();
-            }
-        }
-
-        browser.handlePageVisibility(onHidden, onShown);
-    }());
-
+    
     /*
      * Log version & device support info
      */
